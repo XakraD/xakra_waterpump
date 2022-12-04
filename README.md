@@ -3,6 +3,7 @@
 - [vorp_core](https://github.com/VORPCORE/vorp-core-lua)
 - [vorp_inventory](https://github.com/VORPCORE/vorp_inventory-lua)
 - [vorp_inputs](https://github.com/VORPCORE/vorp_inputs-lua)
+- [vorp_metabolism](https://github.com/VORPCORE/vorp_metabolism-lua)
 
 ## Description
 With this script players will be able to pump water into the water pumps. They will be able to choose the number of empty bottles they want to fill, and the character will do the animation of pumping water. A bottle will appear under the water.
