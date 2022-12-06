@@ -13,9 +13,8 @@ AddEventHandler('xakra_waterpump:CheckBottle', function(num, scenario)
 	local canCarry = VORPInv.canCarryItem(_source, Config.Water, num)
 	if canCarry then
 
-		local canCarry2 = VORPInv.canCarryItem(_source, Config.EmptyBottle, num)
 		local itemCount = VORPInv.getItemCount(_source, Config.EmptyBottle)
-		if itemCount >= num and canCarry2 then
+		if itemCount >= num then
 			TriggerClientEvent('xakra_waterpump:Pumping', _source, num, scenario)
 		else
 			VORPcore.NotifyLeft(_source, Config.Texts['ObjectPump'], Config.Texts["NotEmptyBootle"], "generic_textures", "lock", 3000, "COLOR_PURE_WHITE")
