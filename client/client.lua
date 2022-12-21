@@ -59,7 +59,7 @@ Citizen.CreateThread(function()
                             }
                             
                             TriggerEvent('vorpinputs:advancedInput', json.encode(myInput), function(num)
-                                if num ~= '' and num then -- make sure its not empty or nil
+                                if num ~= '' and num and tonumber(num) > 0 then -- make sure its not empty or nil
                                     TriggerServerEvent('xakra_waterpump:CheckBottle', tonumber(num), scenario)
                                 end
                             end)
