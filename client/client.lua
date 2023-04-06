@@ -122,11 +122,15 @@ AddEventHandler('xakra_waterpump:AnimWater', function(num)
 	end
 
 	TaskPlayAnim(PlayerPedId(), dict, 'use_quick_right_hand', 1.0, 1.0, -1, 31, 1, false, false, false, 0, true)
-	Wait(3750)
     RemoveAnimDict(dict)
+
+    Wait(3400)
     ClearPedTasks(PlayerPedId())
+
+    Wait(400)
     DetachEntity(object, true, true)
 	SetEntityVelocity(object, 0.0, 0.0, -1.0)
+
     Wait(20000)
     DeleteEntity(object)
 end)
