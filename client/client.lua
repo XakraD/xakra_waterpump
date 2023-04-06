@@ -109,24 +109,24 @@ end)
 
 RegisterNetEvent('xakra_waterpump:AnimWater')
 AddEventHandler('xakra_waterpump:AnimWater', function(num)
-	SetCurrentPedWeapon(PlayerPedId(), GetHashKey('WEAPON_UNARMED'), true, 0, false, false)
+    SetCurrentPedWeapon(PlayerPedId(), GetHashKey('WEAPON_UNARMED'), true, 0, false, false)
 
 	local object = CreateObject(GetHashKey('s_rc_poisonedwater01x'), GetEntityCoords(PlayerPedId()), true, true, true)
-    local bone = GetEntityBoneIndexByName(PlayerPedId(), 'MH_L_HandSide')
-	AttachEntityToEntity(object, PlayerPedId(), bone, 0.03, -0.01, -0.03, 20.0, -0.0, 0.0, true, true, false, true, 1, true)
+    local bone = GetEntityBoneIndexByName(PlayerPedId(), 'MH_R_HandSide')
+	AttachEntityToEntity(object, PlayerPedId(), bone, 0.03, -0.01, 0.02, 30.0, 190.0, -20.0, true, true, false, true, 1, true)
 
-	local dict = 'mech_inventory@item@fallbacks@large_drink@left_handed'
+	local dict = 'mech_inventory@drinking@bottle_cylinder_d1-55_h18_neck_a8_b1-8@quick'
 	RequestAnimDict(dict)
 	while not HasAnimDictLoaded(dict) do
 		Citizen.Wait(100)
 	end
 
-	TaskPlayAnim(PlayerPedId(), dict, 'use_quick_left_hand', 1.0, 1.0, -1, 31, 1, false, false, false, 0, true)
-	Wait(4000)
+	TaskPlayAnim(PlayerPedId(), dict, 'use_quick_right_hand', 1.0, 1.0, -1, 31, 1, false, false, false, 0, true)
+	Wait(3750)
     RemoveAnimDict(dict)
     ClearPedTasks(PlayerPedId())
     DetachEntity(object, true, true)
-	SetEntityVelocity(object, 0.0,0.0,-1.0)
+	SetEntityVelocity(object, 0.0, 0.0, -1.0)
     Wait(20000)
     DeleteEntity(object)
 end)
