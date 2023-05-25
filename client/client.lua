@@ -142,9 +142,17 @@ TriggerEvent('getCore', function(core)
     VORPcore = core
 end)
 
+local CharSelected = false
+
+RegisterNetEvent("vorp:SelectedCharacter")
+AddEventHandler("vorp:SelectedCharacter", function(charid)
+	Wait(1000)
+	CharSelected = true
+end)
+
 Citizen.CreateThread(function()         
     while Config.NotifyMetabolism do
-		if not IsEntityDead(PlayerPedId()) then
+		if CharSelected and not IsEntityDead(PlayerPedId()) then
 			TriggerEvent('vorpmetabolism:getValue', 'Hunger', function(hunger)
 				TriggerEvent('vorpmetabolism:getValue', 'Thirst', function(thirst)
 					if hunger <= 100 then
@@ -157,7 +165,7 @@ Citizen.CreateThread(function()
 				end)
 			end)
 		end
-		Citizen.Wait(30000)
+		Wait(30000)
 	end
 end)
 
