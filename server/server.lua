@@ -33,7 +33,7 @@ AddEventHandler('xakra_waterpump:AddWater', function(amount)
 
 	VORPInv.subItem(_source, Config.EmptyBottle, amount)
 	VORPInv.addItem(_source, Config.Water, amount)
-	VORPcore.NotifyAvanced(_source, Config.Texts["AddWater"]..amount..'x '..Config.Texts["Water"], "menu_textures", "menu_icon_holster", "COLOR_PURE_WHITE", 1000)
+	VORPcore.NotifyAvanced(_source, Config.Texts["AddWater"]..amount..'x '..Config.Texts["Water"], "INVENTORY_ITEMS", "consumable_offal", "COLOR_PURE_WHITE", 1000)
 end)
 
 if Config.DrinkingWater then
