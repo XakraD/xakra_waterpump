@@ -171,7 +171,9 @@ end)
 
 --########################### STOP RESOURCE ###########################
 AddEventHandler('onResourceStop', function (resourceName)
-    ClearPedTasks(PlayerPedId())
+    if resourceName == GetCurrentResourceName() then
+        ClearPedTasks(PlayerPedId())
+    end
 end)
 
 -------------------------------------------------------------------------------------------------------------
