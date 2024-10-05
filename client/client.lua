@@ -81,9 +81,9 @@ AddEventHandler('xakra_waterpump:Pumping', function(num, scenario)
 	TaskUseScenarioPoint(PlayerPedId(), scenario, '' , -1.0, true, false, 0, false, -1.0, true)
 
     local bottle
-    local waterpump = Citizen.InvokeNative(0xE143FA2249364369, GetEntityCoords(PlayerPedId()), 1.0, GetHashKey('p_waterpump01x'), false, true, true)	-- GetClosestObjectOfType
-    if waterpump then
+    local waterpump = GetNearbyWaterPump()
 
+    if waterpump then
         local bottle_coords = GetOffsetFromEntityInWorldCoords(waterpump, 0, -0.30, 0.0)
         bottle = CreateObject(GetHashKey('s_rc_poisonedwater01x'), bottle_coords, true, true, true)
     end
@@ -104,8 +104,31 @@ AddEventHandler('xakra_waterpump:Pumping', function(num, scenario)
         active = false
 
 	end, 'innercircle', Config.ProgressbarColor)
-
 end)
+
+function GetNearbyWaterPump()
+    local pcoords = GetEntityCoords(PlayerPedId())
+
+    local Itemset = CreateItemset(true)
+    local size = GetEntitiesNearPoint(pcoords, 2.0, Itemset, 3, Citizen.ResultAsInteger())
+    local Object
+
+    if size > 0 then
+        for i = 0, size - 1 do
+            local entity = GetIndexedItemInItemset(i, Itemset)
+
+            if GetEntityModel(entity) == joaat('p_waterpump01x') then
+                Object = entity
+            end
+        end
+    end
+
+    if IsItemsetValid(Itemset) then
+        DestroyItemset(Itemset)
+    end
+
+    return Object
+end
 
 RegisterNetEvent('xakra_waterpump:AnimWater')
 AddEventHandler('xakra_waterpump:AnimWater', function(num)
